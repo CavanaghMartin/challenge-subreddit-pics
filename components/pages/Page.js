@@ -5,9 +5,10 @@ const Page = ({section}) => {
     const [jsonApi, setjsonApi] = useState([])
     async function fetchData() {
         try {
-            // fetch
+            // fetch the data from api
             let response = await fetch(`https://api.reddit.com/r/pics/${section}`)
             let json = await response.json();
+            //ser the json into internal state
             setjsonApi(json.data.children)
         } catch (error) {
             console.error(error);
@@ -15,10 +16,11 @@ const Page = ({section}) => {
     }
 
     useEffect(() => {
+        //fetch the data after rendering
         fetchData()
     }, [])
 
-
+    //map all the objects to card components
     return (
         <ScrollView >
             {jsonApi[0] && jsonApi.map((obj,index) => {

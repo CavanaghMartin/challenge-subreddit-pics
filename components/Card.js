@@ -4,7 +4,7 @@ import { Text, Image, View, StyleSheet, Linking } from "react-native";
 import timeDifference from "../lib/timeDifference";
 export default function Card({ title, username, score, comments, creationDate, image, url }) {
  
-   
+   //we render the data from props
     return (
         <>
             <TouchableOpacity onPress={() => { Linking.openURL('https://www.reddit.com' + url) }}
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
         marginHorizontal: "auto",
         marginVertical: 8,
         justifyContent: "space-evenly"
+    
     },
 
     cardImage: {
