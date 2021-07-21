@@ -14,6 +14,7 @@ export default function App() {
         <Text style={{ textAlign: "center", fontSize: 20 }} >reddit.com/r/pics/</Text>
       </View>
       <Tab.Navigator>
+        {/*each tab pass the section  prop to the page */}
         <Tab.Screen name="hot" children={() => <Page section="hot" />} />
         <Tab.Screen name="new" children={() => <Page section="new" />} />
         <Tab.Screen name="top" children={() => <Page section="top" />} />
