@@ -11,7 +11,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <View >
-        <Text style={{ textAlign: "center", fontSize: 20 }} >reddit.com/r/pics/</Text>
+        <Text style={{ textAlign: "center", fontSize: 15 }} >reddit.com/pics/</Text>
       </View>
       <Tab.Navigator>
         {/*each tab pass the section  prop to the page */}

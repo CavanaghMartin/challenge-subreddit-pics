@@ -3,7 +3,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Text, Image, View, StyleSheet, Linking } from "react-native";
 import timeDifference from "../lib/timeDifference";
 export default function Card({ title, username, score, comments, creationDate, image, url }) {
- 
+
    //we render the data from props
     return (
         <>
@@ -12,11 +12,11 @@ export default function Card({ title, username, score, comments, creationDate, i
                 <View style={{ flexDirection: "row" }}>
                     <View style={styles.cardImage}>
                         <Image
-                            style={{ width: "100%", height: "100%" }}
-                            source={image}
+                            style={{ flex: 1 }}
+                            source={{ uri: image }}
                         />
                     </View>
-                    <View style={{ display: "flex", flex: 1, marginHorizontal: 12, overflow: "hidden" }}>
+                    <View style={{ flex: 1, marginHorizontal: 12}}>
                         <Text style={styles.cardLocation}>{timeDifference(creationDate)} ago</Text>
                         <Text style={styles.cardTitle}>{title}</Text>
                         <View style={{ display: "flex", flexDirection: "row" }}>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 15,
         marginHorizontal: 5,
-        height: "height / 8",
+        //height: "height / 8",
 
         shadowColor: "#000",
         shadowOffset: {
@@ -61,13 +61,10 @@ const styles = StyleSheet.create({
     },
 
     cardDescription: {
-
-        display: "block",
+        flexWrap:"wrap",
         fontSize: 10,
-        marginHorizontal: "auto",
-        marginVertical: 8,
-        justifyContent: "space-evenly"
-    
+        marginLeft: 10,
+        marginRight: 8,
     },
 
     cardImage: {
