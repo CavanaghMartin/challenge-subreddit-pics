@@ -17,10 +17,6 @@ test('render title of the post correctly', () => {
 
 test('render username of the post correctly', () => {
     const component = render(<Card {...onePost} />);
-    expect(component.getByText(onePost.username)).not.toBeNull();
-});
-
-test('dont render false user', () => {
-    const component = render(<Card {...onePost} />);
     expect(component.queryByText("falseUser")).toBeNull();
+    expect(component.getByText(onePost.username)).not.toBeNull();
 });
