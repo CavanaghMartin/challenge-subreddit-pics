@@ -1,24 +1,24 @@
 import React from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { Text, Image, View, StyleSheet, Linking } from "react-native";
 import timeDifference from "../lib/timeDifference";
 export default function Card({ title, username, score, comments, creationDate, image, url }) {
 
-   //we render the data from props
+    //we render the data from props
     return (
         <>
-            <TouchableOpacity onPress={() => { Linking.openURL('https://www.reddit.com' + url) }}
+            <View onPress={() => { Linking.openURL('https://www.reddit.com' + url) }}
                 style={styles.card}>
-                <View style={{ flexDirection: "row" }}>
+                <View  style={{ flexDirection: "row" }}>
                     <View style={styles.cardImage}>
                         <Image
                             style={{ flex: 1 }}
                             source={{ uri: image }}
                         />
                     </View>
-                    <View style={{ flex: 1, marginHorizontal: 12}}>
+                    <View style={{ flex: 1, marginHorizontal: 12 }}>
                         <Text style={styles.cardLocation}>{timeDifference(creationDate)} ago</Text>
-                        <Text style={styles.cardTitle}>{title}</Text>
+                        <Text 
+                            style={styles.cardTitle}>{title}</Text>
                         <View style={{ display: "flex", flexDirection: "row" }}>
                             <Text style={styles.cardDescription}>{username}</Text>
                             <Text style={styles.cardDescription}>score:{score}</Text>
@@ -26,7 +26,7 @@ export default function Card({ title, username, score, comments, creationDate, i
                         </View>
                     </View>
                 </View>
-            </TouchableOpacity>
+            </View  >
         </>
     );
 }
@@ -38,8 +38,6 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 15,
         marginHorizontal: 5,
-        //height: "height / 8",
-
         shadowColor: "#000",
         shadowOffset: {
             width: 2,
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
     },
 
     cardDescription: {
-        flexWrap:"wrap",
+        flexWrap: "wrap",
         fontSize: 10,
         marginLeft: 10,
         marginRight: 8,

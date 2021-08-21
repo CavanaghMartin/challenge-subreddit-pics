@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Text, ScrollView } from 'react-native';
+import {  ScrollView, Image } from 'react-native';
 import Card from '../Card';
-const Page = ({section}) => {
+const Page = ({ section }) => {
     const [jsonApi, setjsonApi] = useState([])
+    const [loading, setLoading] = useState(true)
+
     async function fetchData() {
         try {
             // fetch the data from api
@@ -12,6 +14,8 @@ const Page = ({section}) => {
             setjsonApi(json.data.children)
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -23,9 +27,14 @@ const Page = ({section}) => {
     //map all the objects to card components
     return (
         <ScrollView >
-            {jsonApi[0] && jsonApi.map((obj,index) => {
+            {loading && <Image
+                style={{ width: 200,height: 200,margin:"22%" }}
+                source={ require("../../loader.gif")}
+            />
+            }
+            {jsonApi[0] && jsonApi.map((obj, index) => {
                 return <Card
-                key={index}
+                    key={index}
                     title={obj.data.title}
                     username={obj.data.author}
                     score={obj.data.score}
