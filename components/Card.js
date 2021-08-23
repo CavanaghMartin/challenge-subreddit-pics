@@ -1,37 +1,34 @@
 import React from "react";
-import { Text, Image, View, StyleSheet, Linking } from "react-native";
+import { Text, Image, View, StyleSheet } from "react-native";
 import timeDifference from "../lib/timeDifference";
-export default function Card({ title, username, score, comments, creationDate, image, url }) {
 
+
+export default function Card({ title, username, score, comments, creationDate, image, url }) {
     //we render the data from props
     return (
-        <>
-            <View onPress={() => { Linking.openURL('https://www.reddit.com' + url) }}
-                style={styles.card}>
-                <View  style={{ flexDirection: "row" }}>
-                    <View style={styles.cardImage}>
-                        <Image
-                            style={{ flex: 1 }}
-                            source={{ uri: image }}
-                        />
-                    </View>
-                    <View style={{ flex: 1, marginHorizontal: 12 }}>
-                        <Text style={styles.cardLocation}>{timeDifference(creationDate)} ago</Text>
-                        <Text 
-                            style={styles.cardTitle}>{title}</Text>
-                        <View style={{ display: "flex", flexDirection: "row" }}>
-                            <Text style={styles.cardDescription}>{username}</Text>
-                            <Text style={styles.cardDescription}>score:{score}</Text>
-                            <Text style={styles.cardDescription}>{comments} comments</Text>
-                        </View>
-                    </View>
+
+        <View style={{ flexDirection: "row" }}>
+            <View style={styles.cardImage}>
+                <Image
+                    style={{ flex: 1 }}
+                    source={{ uri: image }}
+                />
+            </View>
+            <View style={{ flex: 1, marginHorizontal: 12 }}>
+                <Text style={styles.cardLocation}>{timeDifference(creationDate)}</Text>
+                <Text
+                    style={styles.cardTitle}>{title}</Text>
+                <View style={{ display: "flex", flexDirection: "row" }}>
+                    <Text style={styles.cardDescription}>{username}</Text>
+                    <Text style={styles.cardDescription}>score:{score}</Text>
+                    <Text style={styles.cardDescription}>{comments} comments</Text>
                 </View>
-            </View  >
-        </>
+            </View>
+        </View>
     );
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     card: {
         marginVertical: 5,
         backgroundColor: "#fff",

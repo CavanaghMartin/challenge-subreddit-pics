@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {  ScrollView, Image } from 'react-native';
+import { Image, Linking, FlatList } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Card from '../Card';
+import { styles } from '../Card';
 const Page = ({ section }) => {
     const [jsonApi, setjsonApi] = useState([])
     const [loading, setLoading] = useState(true)
@@ -26,26 +28,33 @@ const Page = ({ section }) => {
 
     //map all the objects to card components
     return (
-        <ScrollView >
+        < >
             {loading && <Image
-                style={{ width: 200,height: 200,margin:"22%" }}
-                source={ require("../../loader.gif")}
+                style={{ width: 200, height: 200, margin: "22%" }}
+                source={require("../../loader.gif")}
             />
             }
-            {jsonApi[0] && jsonApi.map((obj, index) => {
-                return <Card
-                    key={index}
-                    title={obj.data.title}
-                    username={obj.data.author}
-                    score={obj.data.score}
-                    comments={obj.data.num_comments}
-                    creationDate={obj.data.created_utc}
-                    image={obj.data.thumbnail}
-                    url={obj.data.permalink}
+            {jsonApi[0] && <FlatList
+                keyExtractor={item => item.data.title}
+                data={jsonApi}
+                renderItem={({ item }) => (
+                    <TouchableOpacity
+                        onPress={() => { Linking.openURL('https://www.reddit.com' + item.data.permalink) }}
+                        style={styles.card}
+                    >
+                        <Card
+                            title={item.data.title}
+                            username={item.data.author}
+                            score={item.data.score}
+                            comments={item.data.num_comments}
+                            creationDate={item.data.created_utc}
+                            image={item.data.thumbnail}
+                            url={item.data.permalink}
+                        />
+                    </TouchableOpacity>
+                )} />}
 
-                />
-            })}
-        </ScrollView>
+        </>
     )
 }
 
