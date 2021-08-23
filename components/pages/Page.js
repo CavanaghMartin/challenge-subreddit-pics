@@ -7,6 +7,7 @@ const Page = ({ section }) => {
     const [jsonApi, setjsonApi] = useState([])
     const [loading, setLoading] = useState(true)
 
+
     async function fetchData() {
         try {
             // fetch the data from api
@@ -37,6 +38,8 @@ const Page = ({ section }) => {
             {jsonApi[0] && <FlatList
                 keyExtractor={item => item.data.title}
                 data={jsonApi}
+                refreshing={loading}
+                onRefresh={() => fetchData()}
                 renderItem={({ item }) => (
                     <TouchableOpacity
                         onPress={() => { Linking.openURL('https://www.reddit.com' + item.data.permalink) }}
